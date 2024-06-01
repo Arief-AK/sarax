@@ -44,7 +44,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build --no-cache . -t ghcr.io/arief-ak/sarax-framework:latest
+          docker build --no-cache . -t ghcr.io/arief-ak/sarax-framework:arm64
 
       - name: Publish image
         run: |
