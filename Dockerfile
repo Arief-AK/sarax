@@ -2,7 +2,7 @@
 FROM dustynv/ros:noetic-desktop-l4t-r35.4.1
 
 # Purge conflicting CUDA enabled OpenCV
-RUN apt-get purge '*opencv*'
+RUN apt purge '*opencv*'
 
 # Install Gazebo-classic
 RUN curl -sSL http://get.gazebosim.org | sh
