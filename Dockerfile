@@ -1,12 +1,16 @@
 # Pull px4-ros-noetic image
-FROM px4io/px4-dev-ros-noetic
+FROM dustynv/ros:noetic-desktop-l4t-r35.4.1
+
+# Purge conflicting CUDA enabled OpenCV
+RUN apt-get purge -y '*opencv*'
+
+# Install Gazebo-classic
+RUN curl -sSL http://get.gazebosim.org | sh
 
 # Update the linux environment
 RUN echo "Updating environment" \
     && sudo apt install nano -y \
-    && sudo apt install figlet -y \
-    && sudo apt update -y \
-    && sudo apt upgrade -y
+    && sudo apt install figlet
 
 # Check environment
 RUN echo "Checking environment" \
@@ -77,5 +81,4 @@ RUN echo "# If running on WSL2, uncomment the following lines" >> ~/.bashrc \
 RUN cd /home/user/sarax_ws/ \
     && echo "export SARAX_WS=$PWD" >> ~/.bashrc \
     && echo "source \$SARAX_WS/devel/setup.bash" >> ~/.bashrc \
-    && echo "Run the following command to start Sarax CLI: source \$SARAX_WS/src/sarax/scripts/container/docker_entrypoint.sh" >> ~/.bashrc
-    # && echo "source \$SARAX_WS/src/sarax/scripts/container/docker_entrypoint.sh" >> ~/.bashrc
+    && echo "source \$SARAX_WS/src/sarax/scripts/container/docker_entrypoint.sh" >> ~/.bashrc
