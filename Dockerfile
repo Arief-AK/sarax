@@ -1,5 +1,5 @@
 # Pull px4-ros-noetic image
-FROM ariefak/ariefak/ros_noetic_desktop_arm64
+FROM ariefak/ros_noetic_desktop_arm64
 
 # Perform rosdep
 RUN echo "Use rosdep to update dependencies" \
