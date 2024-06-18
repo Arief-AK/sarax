@@ -1,13 +1,8 @@
 # Pull px4-ros-noetic image
 FROM dustynv/ros:noetic-desktop-l4t-r35.4.1
 
-# Copy the source into workspace source directory
-COPY . /home/user/sarax_ws/src/sarax/
-
 # Purge conflicting CUDA enabled OpenCV
-RUN cd /home/user/sarax_ws/src/sarax/scripts/container \
-    && ls -l \
-    && chmod +x /home/user/sarax_ws/src/sarax/scripts/container/container_setup.sh && . /home/user/sarax_ws/src/sarax/scripts/container/container_setup.sh
+RUN apt-get remove --purge -y '*opencv*'
 
 # Install Gazebo-classic
 RUN curl -sSL http://get.gazebosim.org | sh
@@ -53,6 +48,9 @@ RUN cd /home/user/sarax_ws/ \
     && . /opt/ros/$ROS_DISTRO/setup.sh \
     && catkin init \
     && wstool init src
+
+# Copy the source into workspace source directory
+COPY . /home/user/sarax_ws/src/sarax/
 
 # Install dependencies using rosdep
 RUN cd /home/user/sarax_ws/ \
