@@ -1,5 +1,11 @@
 # Pull px4-ros-noetic image
-FROM ariefak/ros_noetic_desktop_arm64
+FROM dustynv/ros:noetic-desktop-l4t-r35.4.1
+
+# Purge conflicting CUDA enabled OpenCV
+RUN apt-get remove --purge -y '*opencv*'
+
+# Install Gazebo-classic
+RUN curl -sSL http://get.gazebosim.org | sh
 
 # Perform rosdep
 RUN echo "Use rosdep to update dependencies" \
