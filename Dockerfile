@@ -5,7 +5,7 @@ FROM dustynv/ros:noetic-desktop-l4t-r35.4.1
 COPY . /home/user/sarax_ws/src/sarax/
 
 # Purge conflicting CUDA enabled OpenCV
-RUN cd /home/user/sarax_ws/scripts/container \
+RUN cd /home/user/sarax_ws/src/sarax/scripts/container \
     && chmod +x container_setup.sh && ./container_setup.sh
 
 # Install Gazebo-classic
