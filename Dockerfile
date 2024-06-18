@@ -6,6 +6,7 @@ COPY . /home/user/sarax_ws/src/sarax/
 
 # Purge conflicting CUDA enabled OpenCV
 RUN cd /home/user/sarax_ws/src/sarax/scripts/container \
+    && ls -l \
     && chmod +x /home/user/sarax_ws/src/sarax/scripts/container/container_setup.sh && . /home/user/sarax_ws/src/sarax/scripts/container/container_setup.sh
 
 # Install Gazebo-classic
