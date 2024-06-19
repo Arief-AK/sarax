@@ -1,16 +1,16 @@
 name: Setup and build packages
 
 # To manually run the workflow on GH, use the workflow_dispatch event trigger
-# on: workflow_dispatch
+on: workflow_dispatch
 
 # To automatically run on every push to GH, use the push and pull_request event trigger
-on:
-  push:
-    branches:
-      - arm64_test
-  pull_request:
-    branches:
-      - arm64_test
+# on:
+#   push:
+#     branches:
+#       - arm64_test
+#   pull_request:
+#     branches:
+#       - arm64_test
 
 env:
   USER: github.actor
