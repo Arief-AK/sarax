@@ -18,6 +18,9 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: px4io/px4-dev-ros-noetic:latest
+      options: --privileged --ulimit core=-1 --security-opt seccomp=unconfined
     steps:
 
     - name: Move /var/lib/docker/
