@@ -23,6 +23,9 @@ jobs:
       options: --privileged --ulimit core=-1 --security-opt seccomp=unconfined
     steps:
 
+    - name: Maximize build disk space
+      uses: easimon/maximize-build-space@v10
+
     - name: Clean workspace
       run: |
         cd ~/sarax_ws/
