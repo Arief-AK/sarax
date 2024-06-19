@@ -1,8 +1,16 @@
 # THIS PACKAGE IS NOT PUBLISHED DUE TO ITS LARGE SIZE
 name: Publish docker image as package
 
+on:
+  push:
+    branches:
+      - arm64_test
+  pull_request:
+    branches:
+      - arm64_test
+
 # To manually run the workflow on GH, use the workflow_dispatch event trigger
-on: workflow_dispatch
+# on: workflow_dispatch
 
 # Environments
 env:
