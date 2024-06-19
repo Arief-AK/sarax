@@ -26,7 +26,7 @@ jobs:
     needs: on-success             # Uncomment when on default branch (main)
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/arief-ak/sarax-framework:latest
+      image: ariefak/ros-noetic-desktop:arm64
       options: --privileged --ulimit core=-1 --security-opt seccomp=unconfined
     steps:
     
