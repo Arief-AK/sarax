@@ -19,29 +19,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: dustynv/ros:noetic-desktop-l4t-r35.4.1
+      image: px4io/px4-dev-ros-noetic:latest
       options: --privileged --ulimit core=-1 --security-opt seccomp=unconfined
     steps:
-
-    - name: Move /var/lib/docker/
-      run: sudo mv /var/lib/docker/ "${GITHUB_WORKSPACE}/docker"
-
-    - name: Maximize build space
-      uses: easimon/maximize-build-space@master
-      with:
-        root-reserve-mb: 512
-        temp-reserve-mb: 32
-        swap-size-mb: 32
-        remove-dotnet: 'true'
-        remove-android: 'true'
-        build-mount-path: '/var/lib/docker/'
-
-    - name: Restore /var/lib/docker/
-      run: sudo sh -c "mv ${GITHUB_WORKSPACE}/docker/* /var/lib/docker"
-
-    - name: Purge CUDA enabled OpenCV libraries
-      run: |
-        apt-get remove --purge -y '*opencv*'
 
     - name: Check environment
       run: |
