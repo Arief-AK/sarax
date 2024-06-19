@@ -1,13 +1,13 @@
 name: Sarax PX4 SITL
 
 # To manually run the workflow on GH, use the workflow_dispatch event trigger
-# on: workflow_dispatch
+on: workflow_dispatch
 
 # To automatically run depending on the status of the build.yaml workflow, use workflow_run event trigger
-on:
-  workflow_run:
-    workflows: [Publish docker image as package]
-    types: [completed]
+# on:
+#   workflow_run:
+#     workflows: [Publish docker image as package]
+#     types: [completed]
 
 jobs:
   on-success:
@@ -26,13 +26,11 @@ jobs:
     needs: on-success             # Uncomment when on default branch (main)
     runs-on: ubuntu-latest
     container:
-      image: ariefak/ros-noetic-desktop:arm64
+      image: ghcr.io/arief-ak/sarax:arm64_test-91a9669-1718794214
       options: --privileged --ulimit core=-1 --security-opt seccomp=unconfined
     steps:
     
     - name: Run sarax SITL
       run: |
-        . /home/user/.bashrc
-        cd /home/user/sarax_ws && ls -l
-        cd /home/user/sarax_ws/PX4-Autopilot/
+        cd $SARAX_WS/PX4-Autopilot
         ./sarax_plus_sitl.bash
