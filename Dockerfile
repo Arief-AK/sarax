@@ -24,7 +24,9 @@ RUN mkdir -p ~/dependencies \
 RUN cd ~/dependencies \
     && wget https://raw.githubusercontent.com/PX4/PX4-Autopilot/main/Tools/setup/ubuntu.sh \
     && wget https://raw.githubusercontent.com/PX4/PX4-Autopilot/main/Tools/setup/requirements.txt \
-    && chmod +x ~/dependencies/ubuntu.sh && sed -i -e '/g++-multilib \\\/d' -e '/gcc-multilib \\\/d' ubuntu.sh \
+    && chmod +x ~/dependencies/ubuntu.sh \
+    && sed -i '/g++-multilib \\/d' ubuntu.sh \
+    && sed -i '/gcc-multilib \\/d' ubuntu.sh \
     && . ~/dependencies/ubuntu.sh
 
 # Install MAVROS using binaries
