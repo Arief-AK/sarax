@@ -19,7 +19,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/arief-ak/sarax:arm64_test-91a9669-1718794214
+      image: dustynv/ros:noetic-desktop-l4t-r35.4.1
       options: --privileged --ulimit core=-1 --security-opt seccomp=unconfined
     steps:
 
@@ -38,6 +38,10 @@ jobs:
 
     - name: Restore /var/lib/docker/
       run: sudo sh -c "mv ${GITHUB_WORKSPACE}/docker/* /var/lib/docker"
+
+    - name: Purge CUDA enabled OpenCV libraries
+      run: |
+        apt-get remove --purge -y '*opencv*'
 
     - name: Check environment
       run: |
