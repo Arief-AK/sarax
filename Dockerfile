@@ -7,6 +7,10 @@ RUN apt-get remove --purge -y '*opencv*'
 # Install Gazebo-classic
 RUN curl -sSL http://get.gazebosim.org | sh
 
+# Install text-editor
+RUN apt install nano \
+    && apt install figlet
+
 # Perform rosdep
 RUN echo "Use rosdep to update dependencies" \
     && . /opt/ros/$ROS_DISTRO/setup.sh \
@@ -20,7 +24,8 @@ RUN mkdir -p ~/dependencies \
 RUN cd ~/dependencies \
     && wget https://raw.githubusercontent.com/PX4/PX4-Autopilot/main/Tools/setup/ubuntu.sh \
     && wget https://raw.githubusercontent.com/PX4/PX4-Autopilot/main/Tools/setup/requirements.txt \
-    && chmod +x ~/dependencies/ubuntu.sh && . ~/dependencies/ubuntu.sh
+    && chmod +x ~/dependencies/ubuntu.sh && sed -i -e '/g++-multilib \\\/d' -e '/gcc-multilib \\\/d' ubuntu.sh \
+    && . ~/dependencies/ubuntu.sh
 
 # Install MAVROS using binaries
 RUN cd ~/dependencies \
